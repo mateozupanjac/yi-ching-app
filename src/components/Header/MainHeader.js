@@ -5,7 +5,10 @@ import classes from "./MainHeader.module.css";
 const MainHeader = () => {
   return (
     <header className={classes["main-header"]}>
-      <div id="logo">Yi Ching</div>
+      <div className={classes.logo}>Yi Ching</div>
+      <div className={classes.userProfileImg}>
+        <img alt="user-img" src="/" />
+      </div>
       <nav>
         <ul className={classes["list-items"]}>
           <li className={classes["list-item"]}>
