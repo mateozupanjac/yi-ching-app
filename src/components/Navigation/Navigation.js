@@ -1,5 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import classes from "./Navigation.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Navigation = (props) => {
   return (
@@ -23,6 +24,9 @@ const Navigation = (props) => {
         <div className={classes["dropdown"]}>
           <div className={classes["dropdown-btn"]} onClick={props.onToggle}>
             Menu
+            <span className={classes["menu-icon"]}>
+              <FontAwesomeIcon icon="caret-down" />
+            </span>
           </div>
           {props.isToggled && (
             <div className={classes["dropdown-content"]}>

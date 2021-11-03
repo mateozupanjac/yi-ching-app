@@ -7,6 +7,10 @@ import YiChingPage from "./pages/YiChingPage";
 import UserSavedQuestionsPage from "./pages/UserSavedQuestions";
 import UserSettings from "./pages/UserSettings";
 import UserProfile from "./pages/UserProfile";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
+
+library.add(faCaretDown);
 
 function App() {
   return (

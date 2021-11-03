@@ -55,3 +55,7 @@
 .list-item a.active {
   color: darkgray;
 }
+
+.menu-icon {
+  margin: 0 4px;
+}
