@@ -2,23 +2,30 @@ import React from "react";
 import classes from "./Button.module.css";
 
 const Button = (props) => {
-  const buttonClass = [classes.button];
+  let buttonClass;
 
   switch (true) {
     case props.btnType === "success":
-      buttonClass.push(classes.success);
+      buttonClass = classes.success;
       break;
     case props.btnType === "danger":
-      buttonClass.push(classes.danger);
+      buttonClass = classes.danger;
       break;
     case props.btnType === "demo":
-      buttonClass.push(classes.demo);
+      buttonClass = classes.demo;
+      break;
+    case props.btnType === "enter":
+      buttonClass = classes.enter;
       break;
     default:
-      return buttonClass;
+      return;
   }
 
-  return <button className={buttonClass.join(" ")}>{props.children}</button>;
+  return (
+    <button className={`${classes.button} ${buttonClass}`}>
+      {props.children}
+    </button>
+  );
 };
 
 export default Button;
