@@ -1,18 +1,39 @@
 import React from "react";
+import { useRef } from "react";
+import { useDispatch } from "react-redux";
 
+import { authActions } from "../../store/auth-reducer";
 import Button from "../UI/Button";
 import classes from "./LoginForm.module.css";
 
 const LoginForm = (props) => {
+  const dispatch = useDispatch();
+  const userNameRef = useRef();
+  const passwordRef = useRef();
+
+  const loginHandler = (e) => {
+    e.preventDefault();
+    const userData = {
+      userName: userNameRef.current.value,
+      password: passwordRef.current.value,
+    };
+    console.log("FORM", userData);
+    if (props.isRegistered) {
+      dispatch(authActions.login(userData));
+    } else {
+      dispatch(authActions.registerNewUser());
+    }
+  };
+
   return (
-    <form className={classes["form-control"]}>
+    <form onSubmit={loginHandler} className={classes["form-control"]}>
       <div className={classes["form-input"]}>
         <label htmlFor="username">Username</label>
-        <input type="text" required />
+        <input type="text" required ref={userNameRef} />
       </div>
       <div className={classes["form-input"]}>
         <label htmlFor="password">Password</label>
-        <input type="text" required />
+        <input type="text" required ref={passwordRef} />
       </div>
       <Button btnType="enter">
         {props.isRegistered ? "Log in" : "Register"}

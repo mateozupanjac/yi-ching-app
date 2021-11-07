@@ -22,7 +22,10 @@ const Button = (props) => {
   }
 
   return (
-    <button className={`${classes.button} ${buttonClass}`}>
+    <button
+      className={`${classes.button} ${buttonClass}`}
+      onClick={props.onClick}
+    >
       {props.children}
     </button>
   );
