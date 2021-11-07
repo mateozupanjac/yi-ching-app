@@ -18,6 +18,8 @@
 .userProfileImg {
   border: 2px solid darkgray;
   border-radius: 50%;
+  outline: none;
+  margin: 0;
   width: 60px;
   height: 60px;
   position: absolute;

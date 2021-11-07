@@ -1,12 +1,16 @@
 import React from "react";
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import { authActions } from "../../store/auth-reducer";
 import Button from "../UI/Button";
 import classes from "./LoginForm.module.css";
 
+const API_KEY = "AIzaSyDkXWDyqrYCNg7Quixa5TnACLw4VjS-5jQ";
+
 const LoginForm = (props) => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const userNameRef = useRef();
   const passwordRef = useRef();
@@ -17,11 +21,14 @@ const LoginForm = (props) => {
       userName: userNameRef.current.value,
       password: passwordRef.current.value,
     };
+
     console.log("FORM", userData);
     if (props.isRegistered) {
       dispatch(authActions.login(userData));
+      history.push("/yi-ching");
     } else {
       dispatch(authActions.registerNewUser());
+      history.push("/yi-ching");
     }
   };
 
