@@ -1,4 +1,4 @@
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 
 import Layout from "./components/UI/Layout";
 import UserLoginPage from "./pages/UserLogin";
@@ -10,12 +10,18 @@ import UserProfile from "./pages/UserProfile";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 
+import { useSelector } from "react-redux";
+
 library.add(faCaretDown);
 
 function App() {
+  const isAuth = useSelector((state) => state.auth.isAuthenticated);
   return (
     <Layout>
       <Switch>
+        <Route path="/" exact>
+          {isAuth ? <YiChingPage /> : <Redirect to="/login" />}
+        </Route>
         <Route path="/login">
           <UserLoginPage />
         </Route>
@@ -33,6 +39,9 @@ function App() {
         </Route>
         <Route path="user-profile">
           <UserProfile />
+        </Route>
+        <Route path="*">
+          <Redirect to="/" />
         </Route>
       </Switch>
     </Layout>

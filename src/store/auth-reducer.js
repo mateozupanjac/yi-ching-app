@@ -11,15 +11,18 @@ const sendHttp = async (userData) => {
         body: JSON.stringify({
           email: userData.userName,
           password: userData.password,
+          returnSecureToken: true,
         }),
-        "Content-Type": "application/json",
+        headers: {
+          "Content-Type": "application/json",
+        },
       }
     );
-    console.log("RESULT", res);
 
     if (!res.ok) {
       throw new Error("Something went wrong");
     }
+
     const data = await res.json();
     console.log("DATA", data);
   } catch (err) {

@@ -5,16 +5,16 @@ const Button = (props) => {
   let buttonClass;
 
   switch (true) {
-    case props.btnType === "success":
+    case props.btnClass === "success":
       buttonClass = classes.success;
       break;
-    case props.btnType === "danger":
+    case props.btnClass === "danger":
       buttonClass = classes.danger;
       break;
-    case props.btnType === "demo":
+    case props.btnClass === "demo":
       buttonClass = classes.demo;
       break;
-    case props.btnType === "enter":
+    case props.btnClass === "enter":
       buttonClass = classes.enter;
       break;
     default:
@@ -25,6 +25,7 @@ const Button = (props) => {
     <button
       className={`${classes.button} ${buttonClass}`}
       onClick={props.onClick}
+      type={props.btnType}
     >
       {props.children}
     </button>

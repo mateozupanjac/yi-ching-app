@@ -1,4 +1,6 @@
-const sendHttp = async (userData) => {
+const API_KEY = "AIzaSyDkXWDyqrYCNg7Quixa5TnACLw4VjS-5jQ";
+
+export const useHttp = async (userData) => {
   try {
     const res = await fetch(
       `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${API_KEY}`,

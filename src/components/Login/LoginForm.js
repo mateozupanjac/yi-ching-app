@@ -22,7 +22,6 @@ const LoginForm = (props) => {
       password: passwordRef.current.value,
     };
 
-    console.log("FORM", userData);
     if (props.isRegistered) {
       dispatch(authActions.login(userData));
       history.push("/yi-ching");
@@ -35,14 +34,24 @@ const LoginForm = (props) => {
   return (
     <form onSubmit={loginHandler} className={classes["form-control"]}>
       <div className={classes["form-input"]}>
-        <label htmlFor="username">Username</label>
-        <input type="text" required ref={userNameRef} />
+        <label htmlFor="username">E-mail</label>
+        <input
+          type="email"
+          required
+          ref={userNameRef}
+          placeholder="Type your email"
+        />
       </div>
       <div className={classes["form-input"]}>
         <label htmlFor="password">Password</label>
-        <input type="text" required ref={passwordRef} />
+        <input
+          type="password"
+          required
+          ref={passwordRef}
+          placeholder="Type your password"
+        />
       </div>
-      <Button btnType="enter">
+      <Button btnType="submit" btnClass="enter">
         {props.isRegistered ? "Log in" : "Register"}
       </Button>
       <p className={classes["form-text"]} onClick={props.toggleButton}>
@@ -50,7 +59,9 @@ const LoginForm = (props) => {
           ? "Don't have an account? Click here to register!"
           : " Already have an account? Click here to log in!"}
       </p>
-      <Button btnType="demo">Demo</Button>
+      <Button btnType="submit" btnClass="demo">
+        Demo
+      </Button>
       <p>Enter without creating account.</p>
     </form>
   );
