@@ -16,6 +16,7 @@ library.add(faCaretDown);
 
 function App() {
   const isAuth = useSelector((state) => state.auth.isAuthenticated);
+
   return (
     <Layout>
       <Switch>

@@ -1,10 +1,12 @@
 import React from "react";
 import { useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { authActions } from "../../store/auth-slice";
+import { uiActions } from "../../store/ui-slice";
 import { useHistory } from "react-router-dom";
 
-import { authActions } from "../../store/auth-reducer";
 import Button from "../UI/Button";
+import Loader from "../UI/Loader";
 import classes from "./LoginForm.module.css";
 
 const API_KEY = "AIzaSyDkXWDyqrYCNg7Quixa5TnACLw4VjS-5jQ";
@@ -12,33 +14,94 @@ const API_KEY = "AIzaSyDkXWDyqrYCNg7Quixa5TnACLw4VjS-5jQ";
 const LoginForm = (props) => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const userNameRef = useRef();
-  const passwordRef = useRef();
+  const isLoading = useSelector((state) => state.ui.isLoading);
+  const emailInputRef = useRef();
+  const passwordInputRef = useRef();
 
   const loginHandler = (e) => {
     e.preventDefault();
-    const userData = {
-      userName: userNameRef.current.value,
-      password: passwordRef.current.value,
-    };
+    const enteredEmail = emailInputRef.current.value;
+    const enteredPassword = passwordInputRef.current.value;
+
+    uiActions.startLoading();
+    // optional: add validation
 
     if (props.isRegistered) {
-      dispatch(authActions.login(userData));
-      history.push("/yi-ching");
+      //USER LOGIN
+      fetch(
+        `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${API_KEY}`,
+        {
+          method: "POST",
+          body: JSON.stringify({
+            email: enteredEmail,
+            password: enteredPassword,
+            returnSecureToken: true,
+          }),
+          "Content-Type": "application/json",
+        }
+      ).then((res) => {
+        if (res.ok) {
+          res.json().then((data) => {
+            dispatch(authActions.login());
+            dispatch(uiActions.stopLoading());
+            emailInputRef.current.value = "";
+            passwordInputRef.current.value = "";
+            history.replace("/yi-ching");
+          });
+        } else {
+          return res.json().then((data) => {
+            emailInputRef.current.value = "";
+            passwordInputRef.current.value = "";
+            dispatch(uiActions.stopLoading());
+            history.replace("/login");
+            console.log(data);
+          });
+        }
+      });
     } else {
-      dispatch(authActions.registerNewUser());
-      history.push("/yi-ching");
+      // USER SIGN UP
+      fetch(
+        `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${API_KEY}`,
+        {
+          method: "POST",
+          body: JSON.stringify({
+            email: enteredEmail,
+            password: enteredPassword,
+            returnSecureToken: true,
+          }),
+          "Content-Type": "application/json",
+        }
+      ).then((res) => {
+        if (res.ok) {
+          res.json().then((data) => {
+            dispatch(authActions.login());
+            dispatch(uiActions.stopLoading());
+            emailInputRef.current.value = "";
+            passwordInputRef.current.value = "";
+            history.replace("/yi-ching");
+          });
+        } else {
+          return res.json().then((data) => {
+            emailInputRef.current.value = "";
+            passwordInputRef.current.value = "";
+            dispatch(uiActions.stopLoading());
+            history.replace("/login");
+            console.log(data);
+          });
+        }
+      });
     }
   };
 
   return (
     <form onSubmit={loginHandler} className={classes["form-control"]}>
+      {isLoading && <Loader />}
       <div className={classes["form-input"]}>
         <label htmlFor="username">E-mail</label>
         <input
           type="email"
           required
-          ref={userNameRef}
+          ref={emailInputRef}
           placeholder="Type your email"
         />
       </div>
@@ -47,12 +110,12 @@ const LoginForm = (props) => {
         <input
           type="password"
           required
-          ref={passwordRef}
+          ref={passwordInputRef}
           placeholder="Type your password"
         />
       </div>
       <Button btnType="submit" btnClass="enter">
-        {props.isRegistered ? "Log in" : "Register"}
+        {props.isRegistered ? "Login" : "Register"}
       </Button>
       <p className={classes["form-text"]} onClick={props.toggleButton}>
         {props.isRegistered
