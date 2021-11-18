@@ -23,7 +23,7 @@ const LoginForm = (props) => {
     const enteredEmail = emailInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
 
-    uiActions.startLoading();
+    dispatch(uiActions.startLoading());
     // optional: add validation
 
     if (props.isRegistered) {
