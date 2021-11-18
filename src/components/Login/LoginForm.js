@@ -1,5 +1,5 @@
 import React from "react";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { authActions } from "../../store/auth-slice";
 import { uiActions } from "../../store/ui-slice";
@@ -12,6 +12,7 @@ import classes from "./LoginForm.module.css";
 const API_KEY = "AIzaSyDkXWDyqrYCNg7Quixa5TnACLw4VjS-5jQ";
 
 const LoginForm = (props) => {
+  const [isDemo, setIsDemo] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
   const isLoading = useSelector((state) => state.ui.isLoading);
@@ -26,6 +27,42 @@ const LoginForm = (props) => {
     dispatch(uiActions.startLoading());
     // optional: add validation
 
+    // when demo button is clicked
+    if (isDemo) {
+      //send http
+      fetch(
+        `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${API_KEY}`,
+        {
+          method: "POST",
+          body: {
+            returnSecureToken: true,
+          },
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      ).then((res) => {
+        if (res.ok) {
+          res.json().then((data) => {
+            dispatch(authActions.login());
+            dispatch(uiActions.stopLoading());
+            emailInputRef.current.value = "";
+            passwordInputRef.current.value = "";
+            history.replace("/yi-ching");
+          });
+        } else {
+          return res.json().then((data) => {
+            emailInputRef.current.value = "";
+            passwordInputRef.current.value = "";
+            dispatch(uiActions.stopLoading());
+            history.replace("/login");
+            console.log(data);
+          });
+        }
+      });
+    }
+
+    // login if registeres sign up if not
     if (props.isRegistered) {
       //USER LOGIN
       fetch(
@@ -122,7 +159,11 @@ const LoginForm = (props) => {
           ? "Don't have an account? Click here to register!"
           : " Already have an account? Click here to log in!"}
       </p>
-      <Button btnType="submit" btnClass="demo">
+      <Button
+        btnType="submit"
+        btnClass="demo"
+        onClick={() => setIsDemo((prevState) => (prevState = true))}
+      >
         Demo
       </Button>
       <p>Enter without creating account.</p>
