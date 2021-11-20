@@ -17,6 +17,9 @@ const Button = (props) => {
     case props.btnClass === "enter":
       buttonClass = classes.enter;
       break;
+    case props.btnClass === "toss":
+      buttonClass = classes.toss;
+      break;
     default:
       return;
   }

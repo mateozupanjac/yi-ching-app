@@ -34,29 +34,23 @@ const LoginForm = (props) => {
         `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${API_KEY}`,
         {
           method: "POST",
-          body: {
-            returnSecureToken: true,
-          },
           headers: {
             "Content-Type": "application/json",
           },
         }
       ).then((res) => {
         if (res.ok) {
-          res.json().then((data) => {
+          return res.json().then((data) => {
+            console.log(data);
             dispatch(authActions.login());
             dispatch(uiActions.stopLoading());
-            emailInputRef.current.value = "";
-            passwordInputRef.current.value = "";
             history.replace("/yi-ching");
           });
         } else {
           return res.json().then((data) => {
-            emailInputRef.current.value = "";
-            passwordInputRef.current.value = "";
             dispatch(uiActions.stopLoading());
             history.replace("/login");
-            console.log(data);
+            console.log(data, "RESPONSE DATA");
           });
         }
       });
@@ -151,6 +145,7 @@ const LoginForm = (props) => {
           placeholder="Type your password"
         />
       </div>
+
       <Button btnType="submit" btnClass="enter">
         {props.isRegistered ? "Login" : "Register"}
       </Button>

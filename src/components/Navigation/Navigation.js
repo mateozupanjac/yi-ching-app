@@ -1,9 +1,12 @@
 import { Link, NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { authActions } from "../../store/auth-slice";
 
 import classes from "./Navigation.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Navigation = (props) => {
+  const dispatch = useDispatch();
   return (
     <nav>
       <ul className={classes["list-items"]}>
@@ -36,7 +39,10 @@ const Navigation = (props) => {
             </div>
           )}
         </div>
-        <li className={classes["list-item"]}>
+        <li
+          className={classes["list-item"]}
+          onClick={() => dispatch(authActions.logout())}
+        >
           <Link to="/login">Logout</Link>
         </li>
       </ul>

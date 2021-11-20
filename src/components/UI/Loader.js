@@ -6,9 +6,9 @@ const Loader = (props) => {
   return (
     <LoaderSpinner
       type="Circles"
-      width={80}
-      height={80}
-      color="#00BFFF"
+      width={50}
+      height={50}
+      color="#b6cdb8"
       timeout={props.timeout}
     />
   );

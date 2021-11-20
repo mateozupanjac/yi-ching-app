@@ -1,12 +1,13 @@
 import React, { Fragment } from "react";
 
 import MainHeader from "../Header/MainHeader";
+import classes from "./Layout.module.css";
 
 const Layout = (props) => {
   return (
     <Fragment>
       <MainHeader />
-      <main>{props.children}</main>
+      <main className={classes["main-layout"]}>{props.children}</main>
     </Fragment>
   );
 };

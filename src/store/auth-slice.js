@@ -15,6 +15,7 @@ const authSlice = createSlice({
       state.isAuthenticated = true;
     },
     logout(state) {
+      console.log("USER LOG OUT");
       state.isAuthenticated = false;
     },
     startLoading(state) {
