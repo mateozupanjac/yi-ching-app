@@ -39,16 +39,10 @@
   font-family: Arial, Helvetica, sans-serif;
   text-decoration: underline;
   color: lightgray;
-  text-underline-offset: 3px;
   cursor: pointer;
   font-size: 0.9rem;
 }
 
 .form-text:hover {
   color: white;
-}
-
-p {
-  font-size: 0.9rem;
-  color: lightgray;
 }

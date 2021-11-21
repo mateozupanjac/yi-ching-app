@@ -12,7 +12,7 @@ const TossCoins = (props) => {
   return (
     <form onSubmit={tossCoinsHandler} className={classes.tossCoins}>
       <span className={classes.icon}>
-        <FontAwesomeIcon icon="yin-yang" size="lg" spin />
+        <FontAwesomeIcon icon="yin-yang" size="lg" />
       </span>
       <input type="text" placeholder="Place your question here..." />
       <Button btnClass="toss" btnType="submit">

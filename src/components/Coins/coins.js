@@ -9,25 +9,16 @@ const Coins = (props) => {
   const [isSubmited, setIsSubmited] = useState(false);
   const [coinRotation, setCoinRotation] = useState(false);
 
-  // useEffect(
-  //   useCallback(() => {
-  //     const startRotation = setTimeout(() => {
-  //       console.log("START COIN ROTATION");
-  //       setCoinRotation((prevState) => (prevState = true));
-  //     }, 1000);
-
-  //     return () => clearTimeout(startRotation);
-  //   }),
-  //   [isSubmited, setCoinRotation]
-  // );
-
+  // Starts coin animation
   const didSubmitHandler = () => {
     setIsSubmited((prevState) => (prevState = true));
+
     setCoinRotation((prevState) => (prevState = true));
-    setTimeout(() => {
+    const rotation = setTimeout(() => {
       console.log("COIN ROTATION STOPPED");
       setCoinRotation((prevState) => (prevState = false));
     }, 2000);
+    console.log("STOP TIMEOUT");
   };
 
   const coins = tossedCoins.map((value) => (

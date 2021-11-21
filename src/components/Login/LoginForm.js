@@ -162,7 +162,7 @@ const LoginForm = (props) => {
       >
         Demo
       </Button>
-      <p>Enter without creating account.</p>
+      <p className={classes["form-text"]}>Enter without creating account.</p>
     </form>
   );
 };
