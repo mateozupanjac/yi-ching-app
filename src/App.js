@@ -8,11 +8,11 @@ import UserSavedQuestionsPage from "./pages/UserSavedQuestions";
 import UserSettings from "./pages/UserSettings";
 import UserProfile from "./pages/UserProfile";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
+import { faCaretDown, faYinYang } from "@fortawesome/free-solid-svg-icons";
 
 import { useSelector } from "react-redux";
 
-library.add(faCaretDown);
+library.add(faCaretDown, faYinYang);
 
 function App() {
   const isAuth = useSelector((state) => state.auth.isAuthenticated);
@@ -30,7 +30,7 @@ function App() {
           <InstructionsPage />
         </Route>
         <Route path="/yi-ching">
-          <YiChingPage />
+          {isAuth ? <YiChingPage /> : <Redirect to="/login" />}
         </Route>
         <Route path="user-saved-questions">
           <UserSavedQuestionsPage />

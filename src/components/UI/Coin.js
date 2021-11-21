@@ -6,7 +6,11 @@ import tail from "../../images/tail.jpg";
 
 const Coin = (props) => {
   return (
-    <div className={classes.coin}>
+    <div
+      className={`${classes.coin} ${
+        props.rotation ? classes.coinRotation : null
+      }`}
+    >
       {props.val === 1 ? (
         <img src={head} alt="Head of a coin" width="100%" height="100%" />
       ) : (

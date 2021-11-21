@@ -50,6 +50,7 @@ const LoginForm = (props) => {
           return res.json().then((data) => {
             dispatch(uiActions.stopLoading());
             history.replace("/login");
+
             console.log(data, "RESPONSE DATA");
           });
         }
@@ -72,7 +73,7 @@ const LoginForm = (props) => {
         }
       ).then((res) => {
         if (res.ok) {
-          res.json().then((data) => {
+          return res.json().then((data) => {
             dispatch(authActions.login());
             dispatch(uiActions.stopLoading());
             emailInputRef.current.value = "";
@@ -104,7 +105,7 @@ const LoginForm = (props) => {
         }
       ).then((res) => {
         if (res.ok) {
-          res.json().then((data) => {
+          return res.json().then((data) => {
             dispatch(authActions.login());
             dispatch(uiActions.stopLoading());
             emailInputRef.current.value = "";
