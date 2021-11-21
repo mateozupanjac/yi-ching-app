@@ -10,7 +10,7 @@ const YiChingPage = () => {
 
   return (
     <section className={classes.YiChingSection}>
-      <h2 className={classes.banner}>Welcome to Yi Ching</h2>
+      <h2 className={classes.banner}>Dobrodošli u Yi Ching</h2>
       {isLoading && <Loader />}
       <Coins />
       <Card />

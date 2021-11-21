@@ -17,25 +17,25 @@ const Navigation = (props) => {
         </li>
         <li className={classes["list-item"]}>
           <NavLink activeClassName={classes.active} to="/instructions">
-            Instructions
+            Upute
           </NavLink>
         </li>
         <li className={classes["list-item"]}>
           <NavLink activeClassName={classes.active} to="/user-saved-questions">
-            My Questions
+            Moja pitanja
           </NavLink>
         </li>
         <div className={classes["dropdown"]}>
           <div className={classes["dropdown-btn"]} onClick={props.onToggle}>
-            Menu
+            Izbornik
             <span className={classes["menu-icon"]}>
               <FontAwesomeIcon icon="caret-down" />
             </span>
           </div>
           {props.isToggled && (
             <div className={classes["dropdown-content"]}>
-              <Link to="/user-profile">My Profile</Link>
-              <Link to="/user-settings">Settings</Link>
+              <Link to="/user-profile">Moj profil</Link>
+              <Link to="/user-settings">Postavke</Link>
             </div>
           )}
         </div>
@@ -43,7 +43,7 @@ const Navigation = (props) => {
           className={classes["list-item"]}
           onClick={() => dispatch(authActions.logout())}
         >
-          <Link to="/login">Logout</Link>
+          <Link to="/login">Odjava</Link>
         </li>
       </ul>
     </nav>

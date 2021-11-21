@@ -5,8 +5,8 @@ import Button from "./Button";
 
 const Card = (props) => {
   return (
-    <div class={classes.card}>
-      <div class={classes["card-header"]}>
+    <div className={classes.card}>
+      <div className={classes["card-header"]}>
         <p>JUN - POČETNE POTEŠKOĆE</p>
         <small>Statični heksagram</small>
       </div>
