@@ -13,7 +13,10 @@ const YiChingPage = () => {
       <h2 className={classes.banner}>Dobrodošli u Yi Ching</h2>
       {isLoading && <Loader />}
       <Coins />
-      <Card />
+      <div className={classes.cards}>
+        <Card />
+        <Card />
+      </div>
     </section>
   );
 };

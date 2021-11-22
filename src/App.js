@@ -8,11 +8,15 @@ import UserSavedQuestionsPage from "./pages/UserSavedQuestions";
 import UserSettings from "./pages/UserSettings";
 import UserProfile from "./pages/UserProfile";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faCaretDown, faYinYang } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCaretDown,
+  faYinYang,
+  faUser,
+} from "@fortawesome/free-solid-svg-icons";
 
 import { useSelector } from "react-redux";
 
-library.add(faCaretDown, faYinYang);
+library.add(faCaretDown, faYinYang, faUser);
 
 function App() {
   const isAuth = useSelector((state) => state.auth.isAuthenticated);

@@ -10,17 +10,17 @@ const Card = (props) => {
         <p>JUN - POČETNE POTEŠKOĆE</p>
         <small>Statični heksagram</small>
       </div>
-      <div class="card-body">
-        <div class="card-result">
+      <div className={classes["card-body"]}>
+        <div className={classes["card-lines"]}>
           <div class="hexagramNumber">3.HEXAGRAM</div>
-          <span class="lineSix"></span>
-          <span class="lineFive"></span>
-          <span class="lineFour"></span>
-          <span class="lineThree"></span>
-          <span class="lineTwo"></span>
-          <span class="lineOne"></span>
+          <div class="lineSix">----------------</div>
+          <div class="lineFive">----------------</div>
+          <div class="lineFour">----------------</div>
+          <div class="lineThree">----------------</div>
+          <div class="lineTwo">----------------</div>
+          <div class="lineOne">----------------</div>
         </div>
-        <div class="card-description">
+        <div className={classes["card-description"]}>
           <div class="sastavniTrigrami">
             <h5>Sastavni trigrami:</h5>
             <p class="lead" id="gore">
@@ -30,7 +30,7 @@ const Card = (props) => {
               DOLJE: JEN, grom, pokret, rast
             </p>
           </div>
-          <Button btnClass="enter" btnType="button">
+          <Button btnClass="details" btnType="button">
             Details
           </Button>
         </div>

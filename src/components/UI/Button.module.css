@@ -45,6 +45,17 @@
   background: rgb(72, 104, 116);
 }
 
+.details {
+  width: 50%;
+  background: rgb(35, 69, 77);
+  margin: 8px;
+  transition: 0.3s;
+}
+
+.details:hover {
+  background: #fff;
+  color: rgb(35, 69, 77);
+}
 .demo {
   background: rgb(88, 88, 88);
 }
