@@ -9,11 +9,12 @@
 .banner {
   padding-top: 30px;
   align-self: center;
+  color: rgba(35, 69, 77, 0.6);
 }
 
 .cards {
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   justify-content: space-around;
   width: 60%;
   margin-top: 1.5rem;

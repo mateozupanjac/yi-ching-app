@@ -1,0 +1,14 @@
+.userProfileImg {
+  border: 2px solid #b6cdb8;
+  border-radius: 50%;
+  outline: none;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 10%;
+  margin: 0;
+  width: 40px;
+  height: 40px;
+}

@@ -138,7 +138,7 @@ const LoginForm = (props) => {
         />
       </div>
       <div className={classes["form-input"]}>
-        <label htmlFor="password">Password</label>
+        <label htmlFor="password">Lozinka</label>
         <input
           type="password"
           required
@@ -148,12 +148,12 @@ const LoginForm = (props) => {
       </div>
 
       <Button btnType="submit" btnClass="enter">
-        {props.isRegistered ? "Login" : "Register"}
+        {props.isRegistered ? "Prijava" : "Registracija"}
       </Button>
       <p className={classes["form-text"]} onClick={props.toggleButton}>
         {props.isRegistered
-          ? "Don't have an account? Click here to register!"
-          : " Already have an account? Click here to log in!"}
+          ? "Nemaš račun? Klikni ovdje za registraciju!"
+          : "Imaš račun? Klikni ovdje za prijavu!"}
       </p>
       <Button
         btnType="submit"
@@ -162,7 +162,7 @@ const LoginForm = (props) => {
       >
         Demo
       </Button>
-      <p className={classes["form-text"]}>Enter without creating account.</p>
+      <p className={classes["form-text"]}>Prijavi se bez računa.</p>
     </form>
   );
 };
