@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect, useCallback } from "react";
 import classes from "./coins.module.css";
 
 import TossCoins from "./tossCoins";
-import Coin from "../UI/Coin";
+import Coin from "../../UI/Coin";
 
 const Coins = (props) => {
   const [tossedCoins, setCoins] = useState([1, 0, 1]);

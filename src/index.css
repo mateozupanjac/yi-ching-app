@@ -8,10 +8,10 @@ body {
   width: 100%;
   height: 100vh;
 }
-p,
+/* p,
 h2 {
   font-family: "Open Sans", sans-serif;
-}
+} */
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",

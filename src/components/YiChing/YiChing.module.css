@@ -4,6 +4,10 @@
   justify-content: flex-start;
   align-items: center;
   width: 100%;
+  background-color: #ffffff;
+  background-image: url(../../images/yiching_bg.svg);
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 .banner {

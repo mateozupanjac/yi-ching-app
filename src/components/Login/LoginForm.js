@@ -5,8 +5,8 @@ import { authActions } from "../../store/auth-slice";
 import { uiActions } from "../../store/ui-slice";
 import { useHistory } from "react-router-dom";
 
-import Button from "../UI/Button";
-import Loader from "../UI/Loader";
+import Button from "../../UI/Button";
+import Loader from "../../UI/Loader";
 import classes from "./LoginForm.module.css";
 
 const API_KEY = "AIzaSyDkXWDyqrYCNg7Quixa5TnACLw4VjS-5jQ";

@@ -1,9 +1,9 @@
 import { useSelector } from "react-redux";
 
-import Loader from "../UI/Loader.js";
+import Loader from "../../UI/Loader.js";
 import Coins from "../Coins/coins";
 import classes from "./YiChing.module.css";
-import Card from "../UI/Card.js";
+import Card from "../../UI/Card.js";
 
 const YiChing = () => {
   const isLoading = useSelector((state) => state.ui.isLoading);

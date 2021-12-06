@@ -29,20 +29,18 @@
 .toss {
   width: 170px;
   color: white;
-  font-family: "Open Sans", sans-serif;
   font-size: 1rem;
-  background: rgb(35, 69, 77);
+  background: #2f2f2f;
   border: 2px solid rgba(0, 0, 0, 0.8);
   border-radius: 0 4px 4px 0;
   margin: 0;
   height: 40px;
-
   transition: 0.3s;
 }
 
 .toss:hover {
-  background: #486874;
-  color: #b6cdb8;
+  background: rgb(35, 69, 77);
+  color: #fff;
 }
 
 .details {

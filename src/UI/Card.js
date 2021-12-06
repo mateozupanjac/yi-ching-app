@@ -21,7 +21,7 @@ const Card = (props) => {
           <div class="lineOne">----------------</div>
         </div>
         <div className={classes["card-description"]}>
-          <div class="sastavniTrigrami">
+          <div className={classes["structure-info"]}>
             <h5>Sastavni trigrami:</h5>
             <p class="lead" id="gore">
               GORE: KAN, voda, ponor, poteškoće
@@ -31,7 +31,7 @@ const Card = (props) => {
             </p>
           </div>
           <Button btnClass="details" btnType="button">
-            Details
+            Detalji
           </Button>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import { Switch, Route, Redirect } from "react-router-dom";
 
-import Layout from "./components/UI/Layout";
+import Layout from "./UI/Layout";
 import UserLoginPage from "./pages/UserLogin";
 import InstructionsPage from "./pages/Instructions";
 import YiChingPage from "./pages/YiChingPage";

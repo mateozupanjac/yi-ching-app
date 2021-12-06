@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../UI/Button";
+import Button from "../../UI/Button";
 import classes from "./tossCoins.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 

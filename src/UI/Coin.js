@@ -1,8 +1,8 @@
 import React from "react";
 
 import classes from "../UI/Coin.module.css";
-import head from "../../images/head.jpg";
-import tail from "../../images/tail.jpg";
+import head from "../images/head.jpg";
+import tail from "../images/tail.jpg";
 
 const Coin = (props) => {
   return (
