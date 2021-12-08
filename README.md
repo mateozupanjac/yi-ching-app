@@ -8,8 +8,10 @@ User types a question into the input field and clicks x6 times "Toss Coins" to c
 
 Three lines creates first part of the Yi Ching structure which is called "Trigram", two trigrams gives complete Yi Ching structure prediction which is called "Hexagram", so the final result should give six lines starting from bottom to the top. 
 
-User can get one or two Hexagrams, result will depend on the structure of your question. Question that is better constucted will get more accurate answer from the application.
-When structure is completed user gets a corresponding card (or two) which will answer the question in greater detail, it also shows comments or directions from people who had studied Yi Ching in the past.
+User can get one or two Hexagrams, result will depend on the structure of your question. Question that is better formulated will get more accurate answer from the application.
+Question shouldn't be formulated in a way that the answer is "yes" or "no".
+
+When structure is completed user gets a corresponding card/hexagram (or two) which will answer the question in greater detail, it also shows comments or directions from people who had studied Yi Ching in the past.
 
 User can save his/her questions and answers for later, so after some time he/she can return and compare the truthfulness of Yi Ching.
 
