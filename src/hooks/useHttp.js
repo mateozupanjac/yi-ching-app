@@ -3,24 +3,20 @@ import { uiActions } from "../store/ui-slice";
 
 const API_KEY = "AIzaSyDkXWDyqrYCNg7Quixa5TnACLw4VjS-5jQ";
 
-export const useHttp = (userData) => {
+export const useHttp = (requestConfig) => {
   return async (dispatch) => {
     // Starts the loader
     dispatch(uiActions.startLoading());
 
     // Signin in or up
     const sendRequest = async () => {
-      const res = await fetch(
-        `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${API_KEY}`,
-        {
-          method: "POST",
-          body: JSON.stringify({
-            email: userData.userName,
-            password: userData.password,
-          }),
+      const res = await fetch(`${requestConfig.url}${API_KEY}`, {
+        method: requestConfig.method || "GET",
+        body: JSON.stringify(requestConfig.body) || {},
+        headers: {
           "Content-Type": "application/json",
-        }
-      );
+        },
+      });
 
       // Throws error if there is some
       if (!res.ok) {
@@ -29,9 +25,11 @@ export const useHttp = (userData) => {
     };
 
     try {
+      const res = await sendRequest();
+
       // Login or signin up the user
       // Redirecting user to yi-ching page
-      const data = await sendRequest().json();
+      const data = await res.json();
       console.log(data);
 
       dispatch(uiActions.stopLoading());
