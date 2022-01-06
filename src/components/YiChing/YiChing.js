@@ -8,17 +8,17 @@ import classes from "./YiChing.module.css";
 import Card from "../../UI/Card.js";
 
 const YiChing = () => {
-  const history = useHistory();
-  const isAuth = useSelector((state) => state.auth.isAuthenticated);
+  // const history = useHistory();
+  // const isAuth = useSelector((state) => state.auth.isAuthenticated);
   const isLoading = useSelector((state) => state.ui.isLoading);
 
-  useEffect(() => {
-    if (isAuth) {
-      history.replace("/yi-ching");
-    } else {
-      history.replace("/login");
-    }
-  }, [isAuth, history]);
+  // useEffect(() => {
+  //   if (isAuth) {
+  //     history.replace("/yi-ching");
+  //   } else {
+  //     history.replace("/login");
+  //   }
+  // }, [isAuth, history]);
 
   return (
     <section className={classes.YiChingSection}>

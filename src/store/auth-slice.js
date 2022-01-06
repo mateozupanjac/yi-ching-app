@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const API_KEY = "AIzaSyDkXWDyqrYCNg7Quixa5TnACLw4VjS-5jQ";
 
 const initialAuthState = {
-  isAuthenticated: localStorage.getItem("token"),
+  isAuthenticated: !!localStorage.getItem("token"),
   isLoading: false,
   token: null,
 };
@@ -19,7 +19,7 @@ const authSlice = createSlice({
     },
     logout(state) {
       console.log("USER LOG OUT");
-      localStorage.removeItem("user");
+      localStorage.clear();
       state.token = null;
       state.isAuthenticated = false;
     },
@@ -32,7 +32,9 @@ const authSlice = createSlice({
   },
 });
 
-const { login, startLoading, stopLoading } = authSlice.actions;
+const { login, startLoading, stopLoading, logout } = authSlice.actions;
+
+const calculateRemainingTime = (expirationTime) => expirationTime - Date.now();
 
 export const sendHttp = (requestConfig) => {
   return async (dispatch) => {
@@ -61,15 +63,16 @@ export const sendHttp = (requestConfig) => {
     try {
       const data = await sendRequest();
 
-      // const userData = {
-      //   idToken: data.idToken,
-      //   expiresIn: data.expiresIn,
-      // };
+      const remainingTime = calculateRemainingTime(data.expiresIn);
+
+      // AUTO-LOGOUT
+      setTimeout(() => {
+        dispatch(logout());
+      }, remainingTime);
 
       localStorage.setItem("token", `${data.idToken}`);
 
       // Log in/Sign up user
-      // Set token
       dispatch(stopLoading());
       dispatch(login(data.idToken));
     } catch (err) {

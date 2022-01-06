@@ -1,4 +1,11 @@
-import { Switch, Route, Redirect } from "react-router-dom";
+import React, { useEffect } from "react";
+import {
+  Switch,
+  Route,
+  Redirect,
+  useHistory,
+  useLocation,
+} from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import Layout from "./UI/Layout";
@@ -20,40 +27,36 @@ library.add(faCaretDown, faYinYang, faUser);
 function App() {
   // const initialToken = JSON.parse(localStorage.getItem("user"));
   // console.log(initialToken);
+  const history = useHistory();
+  const location = useLocation();
   const isAuth = useSelector((state) => state.auth.isAuthenticated);
+  const token = useSelector((state) => state.auth.token);
 
-  // useEffect(() => {
-  //   if (isAuth) {
-  //     history.replace("/yi-ching");
-  //   } else {
-  //     history.replace("/login");
-  //   }
-  // }, [isAuth, history]);
+  // Redirects user upon log in
+  useEffect(() => {
+    if (isAuth && token) {
+      history.replace("/yi-ching");
+    }
+  }, [isAuth, token]);
 
   return (
     <Layout>
       <Switch>
         <Route path="/" exact>
-          {isAuth ? <YiChingPage /> : <Redirect to="/login" />}
+          {isAuth ? <Redirect to="/yi-ching" /> : <Redirect to="/login" />}
         </Route>
         <Route path="/login">
-          <UserLoginPage />
+          {!isAuth ? <UserLoginPage /> : <Redirect to="/yi-ching" />}
         </Route>
-        <Route path="/instructions">
-          <InstructionsPage />
-        </Route>
+        <Route path="/instructions">{isAuth && <InstructionsPage />}</Route>
         <Route path="/yi-ching">
           {isAuth ? <YiChingPage /> : <Redirect to="/login" />}
         </Route>
         <Route path="user-saved-questions">
-          <UserSavedQuestionsPage />
+          {isAuth && <UserSavedQuestionsPage />}
         </Route>
-        <Route path="user-settings">
-          <UserSettings />
-        </Route>
-        <Route path="user-profile">
-          <UserProfile />
-        </Route>
+        <Route path="user-settings">{isAuth && <UserSettings />}</Route>
+        <Route path="user-profile">{isAuth && <UserProfile />}</Route>
         <Route path="*">
           <Redirect to="/" />
         </Route>
