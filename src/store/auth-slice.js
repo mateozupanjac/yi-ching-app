@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const API_KEY = "AIzaSyDkXWDyqrYCNg7Quixa5TnACLw4VjS-5jQ";
 
 const initialAuthState = {
-  isAuthenticated: false,
+  isAuthenticated: localStorage.getItem("token"),
   isLoading: false,
   token: null,
 };
@@ -14,19 +14,14 @@ const authSlice = createSlice({
   reducers: {
     login(state, action) {
       console.log("USER AUTHENTICATED");
-
       state.isAuthenticated = true;
-      state.token = action.payload.idToken;
-      localStorage.setItem("user", JSON.stringify(action.payload));
+      state.token = action.payload;
     },
     logout(state) {
       console.log("USER LOG OUT");
       localStorage.removeItem("user");
+      state.token = null;
       state.isAuthenticated = false;
-    },
-    setToken(state, action) {
-      state.token = action.payload;
-      console.log("setToken fn()", action.payload);
     },
     startLoading(state) {
       state.isLoading = true;
@@ -65,15 +60,18 @@ export const sendHttp = (requestConfig) => {
 
     try {
       const data = await sendRequest();
-      const userData = {
-        idToken: data.idToken,
-        expiresIn: data.expiresIn,
-      };
-      console.log(data);
 
-      // Login/Sign up user
+      // const userData = {
+      //   idToken: data.idToken,
+      //   expiresIn: data.expiresIn,
+      // };
+
+      localStorage.setItem("token", `${data.idToken}`);
+
+      // Log in/Sign up user
+      // Set token
       dispatch(stopLoading());
-      dispatch(login(userData));
+      dispatch(login(data.idToken));
     } catch (err) {
       // catching and showing error if there is some
       // redirecting the user to the login page
