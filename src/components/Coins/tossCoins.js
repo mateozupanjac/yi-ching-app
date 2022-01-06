@@ -3,6 +3,7 @@ import Button from "../../UI/Button";
 import classes from "./tossCoins.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+// Postavi pitanje i baci kovanice x6 puta
 const TossCoins = (props) => {
   const tossCoinsHandler = (event) => {
     event.preventDefault();

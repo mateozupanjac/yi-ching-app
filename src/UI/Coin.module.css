@@ -1,6 +1,16 @@
 .coin {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
   width: 200px;
   height: 200px;
+  margin: 2px;
+}
+
+.coin > img {
+  width: 100%;
+  height: auto;
 }
 
 .coinRotation {

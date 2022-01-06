@@ -1,8 +1,6 @@
-import React, { useCallback } from "react";
-import { useRef, useState, useEffect } from "react";
+import React from "react";
+import { useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { authActions } from "../../store/auth-slice";
-import { uiActions } from "../../store/ui-slice";
 import { useHistory } from "react-router-dom";
 
 import { sendHttp } from "../../store/auth-slice";
@@ -17,6 +15,8 @@ const LoginForm = (props) => {
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
 
+  // Log in handler
+  // Sends user data to firebase
   const loginHandler = (event) => {
     console.log(event.nativeEvent.submitter.innerText);
     event.preventDefault();

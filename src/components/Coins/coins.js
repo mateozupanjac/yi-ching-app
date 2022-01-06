@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect, useCallback } from "react";
+import React, { Fragment, useState } from "react";
 import classes from "./coins.module.css";
 
 import TossCoins from "./tossCoins";
@@ -12,8 +12,8 @@ const Coins = (props) => {
   // Starts coin animation
   const didSubmitHandler = () => {
     setIsSubmited((prevState) => (prevState = true));
-
     setCoinRotation((prevState) => (prevState = true));
+
     const rotation = setTimeout(() => {
       console.log("COIN ROTATION STOPPED");
       setCoinRotation((prevState) => (prevState = false));

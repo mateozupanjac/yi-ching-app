@@ -1,6 +1,5 @@
 .coins-frame {
   display: flex;
-  flex-flow: row nowrap;
   justify-content: space-evenly;
   align-items: center;
   margin: 3rem auto 0 auto;
@@ -8,9 +7,15 @@
   /* border-top: 2px solid rgba(35, 69, 77, 0.8);
   border-bottom: 2px solid rgba(35, 69, 77, 0.8); */
   border: 2px solid rgba(35, 69, 77, 0.6);
-  border-radius: 4px;
+  border-radius: 10px;
   box-sizing: border-box;
   background: #fff;
   width: 80%;
   height: 400px;
+}
+
+@media (max-width: 750px) {
+  .coins-frame {
+    height: 250px;
+  }
 }

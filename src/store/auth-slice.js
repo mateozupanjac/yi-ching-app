@@ -1,37 +1,38 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { uiActions } from "./ui-slice";
 
 const API_KEY = "AIzaSyDkXWDyqrYCNg7Quixa5TnACLw4VjS-5jQ";
 
 const initialAuthState = {
   isAuthenticated: false,
-  isLogin: false,
   isLoading: false,
-  token: "",
+  token: null,
 };
 
 const authSlice = createSlice({
   name: "authentication",
   initialState: initialAuthState,
   reducers: {
-    login(state) {
+    login(state, action) {
       console.log("USER AUTHENTICATED");
+
       state.isAuthenticated = true;
+      state.token = action.payload.idToken;
+      localStorage.setItem("user", JSON.stringify(action.payload));
     },
     logout(state) {
       console.log("USER LOG OUT");
+      localStorage.removeItem("user");
       state.isAuthenticated = false;
-      state.isLogin = false;
-      state.isDemoLogin = false;
+    },
+    setToken(state, action) {
+      state.token = action.payload;
+      console.log("setToken fn()", action.payload);
     },
     startLoading(state) {
       state.isLoading = true;
     },
     stopLoading(state) {
       state.isLoading = false;
-    },
-    setIsLogin(state, action) {
-      state.isLogin = true;
     },
   },
 });
@@ -59,19 +60,20 @@ export const sendHttp = (requestConfig) => {
       if (!res.ok) {
         throw new Error();
       }
+      return res.json();
     };
 
     try {
-      await sendRequest();
-      console.log("Request sent");
+      const data = await sendRequest();
+      const userData = {
+        idToken: data.idToken,
+        expiresIn: data.expiresIn,
+      };
+      console.log(data);
 
-      // Login or signin up the user
-      // Redirecting user to yi-ching page
-      // const data = await response.json();
-      // console.log(data);
-
+      // Login/Sign up user
       dispatch(stopLoading());
-      dispatch(login());
+      dispatch(login(userData));
     } catch (err) {
       // catching and showing error if there is some
       // redirecting the user to the login page

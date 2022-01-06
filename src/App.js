@@ -1,4 +1,5 @@
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route, Redirect, useHistory } from "react-router-dom";
+import { useEffect, useCallback } from "react";
 
 import Layout from "./UI/Layout";
 import UserLoginPage from "./pages/UserLogin";
@@ -19,7 +20,18 @@ import { useSelector } from "react-redux";
 library.add(faCaretDown, faYinYang, faUser);
 
 function App() {
+  const history = useHistory();
   const isAuth = useSelector((state) => state.auth.isAuthenticated);
+  const initialToken = JSON.parse(localStorage.getItem("user"));
+  console.log(initialToken);
+
+  useEffect(() => {
+    if (isAuth) {
+      history.replace("/yi-ching");
+    } else {
+      history.replace("/login");
+    }
+  }, [isAuth, history]);
 
   return (
     <Layout>
