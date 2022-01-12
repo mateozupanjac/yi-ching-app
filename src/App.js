@@ -1,11 +1,5 @@
 import React, { useEffect } from "react";
-import {
-  Switch,
-  Route,
-  Redirect,
-  useHistory,
-  useLocation,
-} from "react-router-dom";
+import { Switch, Route, Redirect, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import Layout from "./UI/Layout";
@@ -25,10 +19,7 @@ import {
 library.add(faCaretDown, faYinYang, faUser);
 
 function App() {
-  // const initialToken = JSON.parse(localStorage.getItem("user"));
-  // console.log(initialToken);
   const history = useHistory();
-  const location = useLocation();
   const isAuth = useSelector((state) => state.auth.isAuthenticated);
   const token = useSelector((state) => state.auth.token);
 
@@ -37,7 +28,7 @@ function App() {
     if (isAuth && token) {
       history.replace("/yi-ching");
     }
-  }, [isAuth, token]);
+  }, [isAuth, token, history]);
 
   return (
     <Layout>

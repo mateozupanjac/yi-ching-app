@@ -6,11 +6,13 @@ import { useHistory } from "react-router-dom";
 import { sendHttp } from "../../store/auth-slice";
 import Button from "../../UI/Button";
 import Loader from "../../UI/Loader";
+import { ErrorMsg } from "../../UI/ErrorMsg";
 import classes from "./LoginForm.module.css";
 
 const LoginForm = (props) => {
   const history = useHistory();
   const dispatch = useDispatch();
+  const error = useSelector((state) => state.auth.error);
   const isLoading = useSelector((state) => state.ui.isLoading);
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
@@ -41,7 +43,7 @@ const LoginForm = (props) => {
       // Log in user without email and password
       dispatch(
         sendHttp({
-          url: "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=",
+          url: "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key",
           method: "POST",
         })
       );
@@ -65,6 +67,7 @@ const LoginForm = (props) => {
 
   return (
     <form onSubmit={loginHandler} className={classes["form-control"]}>
+      {error && <ErrorMsg message={error} />}
       {isLoading && <Loader />}
       <div className={classes["form-input"]}>
         <label htmlFor="username">E-mail</label>
