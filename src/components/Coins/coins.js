@@ -9,6 +9,8 @@ const Coins = (props) => {
   const [isSubmited, setIsSubmited] = useState(false);
   const [coinRotation, setCoinRotation] = useState(false);
 
+  console.log("[COINS] Rendered");
+
   // Starts coin animation
   const didSubmitHandler = () => {
     setIsSubmited((prevState) => (prevState = true));

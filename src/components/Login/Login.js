@@ -6,6 +6,8 @@ import classes from "./Login.module.css";
 const Login = () => {
   const [userIsRegistered, setUserIsRegistered] = useState(true);
 
+  console.log("[LOGIN] Rendered");
+
   const toggleLoginButton = () => {
     setUserIsRegistered((prevState) => !prevState);
   };
@@ -16,9 +18,6 @@ const Login = () => {
         isRegistered={userIsRegistered}
         toggleButton={toggleLoginButton}
       />
-      <div>
-        <p>Carousel</p>
-      </div>
     </section>
   );
 };

@@ -11,6 +11,7 @@ const YiChing = () => {
   // const history = useHistory();
   // const isAuth = useSelector((state) => state.auth.isAuthenticated);
   const isLoading = useSelector((state) => state.ui.isLoading);
+  console.log("[YICHING] Rendered");
 
   // useEffect(() => {
   //   if (isAuth) {

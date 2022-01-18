@@ -16,8 +16,8 @@ const authSlice = createSlice({
   reducers: {
     login(state, action) {
       console.log("USER AUTHENTICATED");
-      state.isAuthenticated = true;
       state.token = action.payload;
+      state.isAuthenticated = true;
     },
     logout(state) {
       console.log("USER LOG OUT");
@@ -49,7 +49,7 @@ export const sendHttp = (requestConfig) => {
     // Starts the loader
     dispatch(startLoading());
 
-    // Signin in or up
+    // Sends request to the firebase api
     const sendRequest = async () => {
       const res = await fetch(`${requestConfig.url}${API_KEY}`, {
         method: requestConfig.method,
@@ -61,7 +61,6 @@ export const sendHttp = (requestConfig) => {
         },
       });
 
-      // Throws error if there is some
       if (!res.ok) {
         throw new Error("Request failed! Something went wrong!");
       }
@@ -69,6 +68,7 @@ export const sendHttp = (requestConfig) => {
     };
 
     try {
+      // Retrieves data from the request that has been sent
       const data = await sendRequest();
 
       // AUTO-LOGOUT AFTER 1 HOUR -- OPTIONAL
@@ -85,8 +85,8 @@ export const sendHttp = (requestConfig) => {
         dispatch(login(data.idToken));
       }
     } catch (err) {
-      // catching and showing error if there is some
-      // redirecting the user to the login page
+      // catches and shows error if there is some
+      // redirects the user to the login page
       console.log(err.message);
       dispatch(stopLoading());
       dispatch(setError(err.message));

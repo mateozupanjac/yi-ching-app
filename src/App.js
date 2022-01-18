@@ -23,6 +23,8 @@ function App() {
   const isAuth = useSelector((state) => state.auth.isAuthenticated);
   const token = useSelector((state) => state.auth.token);
 
+  console.log("[APP] Rendered");
+
   // Redirects user upon log in
   useEffect(() => {
     if (isAuth && token) {

@@ -5,6 +5,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 // Postavi pitanje i baci kovanice x6 puta
 const TossCoins = (props) => {
+  console.log("[TOSS COINS] Rendered");
+
   const tossCoinsHandler = (event) => {
     event.preventDefault();
     props.didSubmit();

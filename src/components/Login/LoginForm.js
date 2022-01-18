@@ -17,6 +17,8 @@ const LoginForm = (props) => {
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
 
+  console.log("[LOGIN FORM] Rendered");
+
   // Log in handler
   // Sends user data to firebase
   const loginHandler = (event) => {

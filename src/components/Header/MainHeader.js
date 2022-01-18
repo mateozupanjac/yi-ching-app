@@ -5,8 +5,9 @@ import Navigation from "../Navigation/Navigation";
 
 const MainHeader = () => {
   const isAuth = useSelector((state) => state.auth.isAuthenticated);
-
   const [toggleMenu, setToggleMenu] = useState(false);
+
+  console.log("[MAIN HEADER] Rendered");
 
   const toggleMenuHandler = () => {
     setToggleMenu((prevState) => !prevState);

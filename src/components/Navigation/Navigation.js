@@ -7,6 +7,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Navigation = (props) => {
   const dispatch = useDispatch();
+
+  console.log("[NAVIGATION] Rendered");
   return (
     <nav>
       <ul className={classes["list-items"]}>
