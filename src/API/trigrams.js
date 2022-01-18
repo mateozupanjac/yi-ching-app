@@ -1,4 +1,4 @@
-const trigrams = [
+export const trigrams = [
   {
     ime: "Chien",
     struktura: ["puna", "puna", "puna"],

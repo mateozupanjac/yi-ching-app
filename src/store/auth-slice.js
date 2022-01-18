@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const API_KEY = "AIzaSyDkXWDyqrYCNg7Quixa5TnACLw4VjS-5jQ";
-//let logoutTimer;
 
 const initialAuthState = {
   isAuthenticated: !!localStorage.getItem("token"),
@@ -22,9 +21,6 @@ const authSlice = createSlice({
     logout(state) {
       console.log("USER LOG OUT");
       localStorage.clear();
-      //if (logoutTimer) {
-      //  clearTimeout(logoutTimer);
-      //}
       state.token = null;
       state.isAuthenticated = false;
     },
@@ -41,8 +37,6 @@ const authSlice = createSlice({
 });
 
 const { login, startLoading, stopLoading, setError } = authSlice.actions;
-
-//const calculateRemainingTime = (expirationTime) => expirationTime - Date.now();
 
 export const sendHttp = (requestConfig) => {
   return async (dispatch) => {
@@ -70,12 +64,6 @@ export const sendHttp = (requestConfig) => {
     try {
       // Retrieves data from the request that has been sent
       const data = await sendRequest();
-
-      // AUTO-LOGOUT AFTER 1 HOUR -- OPTIONAL
-      //const logoutExpirationTime = Date.now() + data.expiresIn * 1000;
-      //logoutTimer = setTimeout(() => {
-      //  dispatch(logout());
-      //}, logoutExpirationTime);
 
       // Log in/Sign up user
       if (data.idToken) {

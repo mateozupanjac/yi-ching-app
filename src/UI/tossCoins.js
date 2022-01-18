@@ -1,19 +1,12 @@
 import React from "react";
-import Button from "../../UI/Button";
+import Button from "./Button";
 import classes from "./tossCoins.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 // Postavi pitanje i baci kovanice x6 puta
 const TossCoins = (props) => {
-  console.log("[TOSS COINS] Rendered");
-
-  const tossCoinsHandler = (event) => {
-    event.preventDefault();
-    props.didSubmit();
-  };
-
   return (
-    <form onSubmit={tossCoinsHandler} className={classes.tossCoins}>
+    <form onSubmit={props.didSubmit} className={classes.tossCoins}>
       <span className={classes.icon}>
         <FontAwesomeIcon icon="yin-yang" size="lg" />
       </span>

@@ -28,7 +28,7 @@ const LoginForm = (props) => {
     const enteredPassword = passwordInputRef.current.value;
 
     if (event.nativeEvent.submitter.innerText === "Prijava") {
-      // Log in user
+      // **** Log in user ****
       dispatch(
         sendHttp({
           url: "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=",
@@ -42,16 +42,16 @@ const LoginForm = (props) => {
       );
       history.replace("/yi-ching");
     } else if (event.nativeEvent.submitter.innerText === "Demo") {
-      // Log in user without email and password
+      // **** Log in user without email and password ****
       dispatch(
         sendHttp({
-          url: "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key",
+          url: "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=",
           method: "POST",
         })
       );
       history.push("/yi-ching");
     } else {
-      // Register user
+      // **** Register user ****
       dispatch(
         sendHttp({
           url: "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=",
