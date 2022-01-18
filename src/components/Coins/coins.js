@@ -6,21 +6,20 @@ import Coin from "../../UI/Coin";
 
 const Coins = (props) => {
   const [tossedCoins, setCoins] = useState([1, 0, 1]);
-  const [isSubmited, setIsSubmited] = useState(false);
   const [coinRotation, setCoinRotation] = useState(false);
 
   console.log("[COINS] Rendered");
 
   // Starts coin animation
   const didSubmitHandler = () => {
-    setIsSubmited((prevState) => (prevState = true));
     setCoinRotation((prevState) => (prevState = true));
 
     const rotation = setTimeout(() => {
       console.log("COIN ROTATION STOPPED");
       setCoinRotation((prevState) => (prevState = false));
     }, 2000);
-    console.log("STOP TIMEOUT");
+
+    clearTimeout(rotation);
   };
 
   const coins = tossedCoins.map((value) => (

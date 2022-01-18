@@ -14,7 +14,7 @@ const Coin = (props) => {
       {props.val === 1 ? (
         <img src={head} alt="Head of a coin" width="100%" height="100%" />
       ) : (
-        <img src={tail} alt="Tail of a coin" />
+        <img src={tail} alt="Tail of a coin" width="100%" height="100%" />
       )}
     </div>
   );

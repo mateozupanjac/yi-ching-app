@@ -1,4 +1,4 @@
-const dataHexagram = {
+const hexagrams = {
   chien01: {
     ime: "CHIEN - STVARALAŠTVO",
     struktura: ["Chien", "Chien"],
