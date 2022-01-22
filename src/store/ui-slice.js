@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialUISlice = {
   isLoading: false,
-  didSubmit: false,
 };
 
 const uiSlice = createSlice({
