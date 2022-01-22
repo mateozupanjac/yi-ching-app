@@ -38,13 +38,14 @@ function App() {
         <Route path="/" exact>
           {isAuth ? <Redirect to="/yi-ching" /> : <Redirect to="/login" />}
         </Route>
+
         <Route path="/login">
           {!isAuth ? <UserLoginPage /> : <Redirect to="/yi-ching" />}
         </Route>
-        <Route path="/instructions">{isAuth && <InstructionsPage />}</Route>
         <Route path="/yi-ching">
           {isAuth ? <YiChingPage /> : <Redirect to="/login" />}
         </Route>
+        <Route path="/instructions">{isAuth && <InstructionsPage />}</Route>
         <Route path="user-saved-questions">
           {isAuth && <UserSavedQuestionsPage />}
         </Route>
