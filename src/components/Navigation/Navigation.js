@@ -1,6 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { authActions } from "../../store/auth-slice";
+import { yiChingActions } from "../../store/yiChing-slice";
 
 import classes from "./Navigation.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,6 +10,11 @@ const Navigation = (props) => {
   const dispatch = useDispatch();
 
   console.log("[NAVIGATION] Rendered");
+
+  const logoutUserHandler = () => {
+    dispatch(authActions.logout());
+    dispatch(yiChingActions.setIsCompleteToFalse());
+  };
   return (
     <nav>
       <ul className={classes["list-items"]}>
@@ -41,10 +47,7 @@ const Navigation = (props) => {
             </div>
           )}
         </div>
-        <li
-          className={classes["list-item"]}
-          onClick={() => dispatch(authActions.logout())}
-        >
+        <li className={classes["list-item"]} onClick={logoutUserHandler}>
           <Link to="/login">Odjava</Link>
         </li>
       </ul>

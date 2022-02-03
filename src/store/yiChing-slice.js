@@ -1,4 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { batch } from "react-redux";
+import { uiActions } from "./ui-slice";
 
 import { hexagrams } from "../API/hexagrams";
 import { trigrams } from "../API/trigrams";
@@ -11,6 +13,7 @@ const initialState = {
   lines: [],
   isComplete: false,
   rotation: false,
+  buttonDisabled: false,
 };
 
 const yiChingSlice = createSlice({
@@ -21,26 +24,31 @@ const yiChingSlice = createSlice({
       state.coins = action.payload;
     },
     setLines(state, action) {
-      console.log(action.payload);
-
       if (state.lines.length < 6) {
-        if (state.lines.length === 5) state.isComplete = true;
+        if (state.lines.length === 5) {
+          state.isComplete = true;
+          state.buttonDisabled = true;
+        }
         state.lines.push(action.payload);
       }
     },
+    setIsCompleteToFalse(state) {
+      state.isComplete = false;
+    },
     startRotation(state) {
       state.rotation = true;
+      state.buttonDisabled = true;
     },
     stopRotation(state) {
       state.rotation = false;
+      state.buttonDisabled = false;
     },
   },
 });
 
+// *** PREDICTION FUNCTIONS ***
 const { setCoins, startRotation, stopRotation, setLines } =
   yiChingSlice.actions;
-
-// *** PREDICTION FUNCTIONS ***
 
 const tossCoins = () => {
   const coins = [];
@@ -52,58 +60,34 @@ const tossCoins = () => {
 
 const convertCoinsToLine = (x) => {
   let y = x.join("");
-  let line = "";
-  console.log(y);
-  // switch (y) {
-  //   case y === "110" || y === "011" || y === "101":
-  //     line = "full";
-  //     break;
-  //   case y === "100" || y === "010" || y === "001":
-  //     line = "dashed";
-  //     break;
-  //   case y === "000":
-  //     line = "fullWillChange";
-  //     break;
-  //   case y === "111":
-  //     line = "dashedWillChange";
-  //     break;
-  //   default:
-  //     throw new Error();
-  // }
+  //let line = "";
 
   if (y === "110" || y === "011" || y === "101") {
-    line = "full";
+    return "full";
   } else if (y === "100" || y === "010" || y === "001") {
-    line = "dashed";
+    return "dashed";
   } else if (y === "000") {
-    line = "fullWillChange";
+    return "fullWillChange";
   } else if (y === "111") {
-    line = "dashedWillChange";
+    return "dashedWillChange";
   }
-
-  return line;
-  // if (x === '110' || x === '011' || x === '101') {
-  //     return
-  // } else if (x === '100' || x === '010' || x === '001') {
-  //     arr.push('isprekidana');
-  // } else if (x === '000') {
-  //     arr.push('punaPromjenjiva');
-  // } else if (x === '111') {
-  //     arr.push('isprekidanaPromjenjiva');
-  // }
+  // return line;
 };
 
 // *** START PREDICTION THUNK ***
 export const startPrediction = () => {
   return async (dispatch) => {
     dispatch(startRotation());
-
+    console.log(initialState.lines);
     setTimeout(() => {
       const tossedCoins = tossCoins();
       const line = convertCoinsToLine(tossedCoins);
-      dispatch(setCoins(tossedCoins));
-      dispatch(setLines(line));
-      dispatch(stopRotation());
+      console.log(line);
+      batch(() => {
+        dispatch(stopRotation());
+        dispatch(setCoins(tossedCoins));
+        dispatch(setLines(line));
+      });
     }, 2000);
   };
 };

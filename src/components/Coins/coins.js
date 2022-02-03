@@ -11,6 +11,7 @@ const Coins = (props) => {
   const rotation = useSelector((state) => state.yiChing.rotation);
   const lines = useSelector((state) => state.yiChing.lines);
   const isComplete = useSelector((state) => state.yiChing.isComplete);
+  const buttonDisabled = useSelector((state) => state.yiChing.buttonDisabled);
   console.log(lines, isComplete);
   const coins = coinsArr.map((value) => {
     return (
@@ -21,7 +22,10 @@ const Coins = (props) => {
   return (
     <Fragment>
       <div className={classes["coins-frame"]}>{coins}</div>
-      <TossCoins didSubmit={props.predictionHandler} />
+      <TossCoins
+        didSubmit={props.predictionHandler}
+        isButtonDisabled={buttonDisabled}
+      />
     </Fragment>
   );
 };

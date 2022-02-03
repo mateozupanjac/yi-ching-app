@@ -14,6 +14,12 @@ const uiSlice = createSlice({
     stopLoading(state) {
       state.isLoading = false;
     },
+    disableButton(state) {
+      state.buttonDisabled = true;
+    },
+    enableButton(state) {
+      state.buttonDisabled = false;
+    },
   },
 });
 

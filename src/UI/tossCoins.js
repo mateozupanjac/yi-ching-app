@@ -11,7 +11,11 @@ const TossCoins = (props) => {
         <FontAwesomeIcon icon="yin-yang" size="lg" />
       </span>
       <input type="text" placeholder="Postavi svoje pitanje..." />
-      <Button btnClass="toss" btnType="submit">
+      <Button
+        btnClass="toss"
+        btnType="submit"
+        isDisabled={props.isButtonDisabled}
+      >
         Baci kovanice
       </Button>
     </form>

@@ -10,6 +10,13 @@
   color: white;
 }
 
+button:disabled,
+button:disabled:hover {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+}
+
 .success {
   background: rgb(35, 122, 35);
 }
